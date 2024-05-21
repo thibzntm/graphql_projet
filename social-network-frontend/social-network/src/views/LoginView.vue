@@ -1,17 +1,27 @@
 <template>
-  <div>
-    <h1>Connexion</h1>
-    <form @submit.prevent="login">
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" v-model="email" required />
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center mb-4">Connexion</h1>
+            <form @submit.prevent="login">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" v-model="email" class="form-control" id="email" required />
+              </div>
+              <div class="form-group">
+                <label for="password">Mot de passe:</label>
+                <input type="password" v-model="password" class="form-control" id="password" required />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-sign-in-alt"></i> Connexion
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div>
-        <label for="password">Mot de passe:</label>
-        <input type="password" v-model="password" required />
-      </div>
-      <button type="submit">Connexion</button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -41,17 +51,15 @@ export default defineComponent({
     const login = async () => {
       try {
         const response = await loginMutation({
-            email: email.value,
-            password: password.value,
+          email: email.value,
+          password: password.value,
         });
-        
+
         const token = response?.data.login;
-        if(token){
+        if (token) {
           localStorage.setItem('token', token);
           window.location.href = '/'; // Rafraîchit la page et redirige vers l'accueil
         }
-        
-
       } catch (error) {
         console.error('Error logging in:', error);
       }
@@ -67,5 +75,26 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Ajoutez vos styles ici */
+.container {
+  max-width: 500px;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary i {
+  margin-right: 0.5rem;
+}
 </style>
