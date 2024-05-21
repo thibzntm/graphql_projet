@@ -88,10 +88,8 @@
       const addComment = async () => {
         try {
           const response = await createCommentMutation({
-            variables: {
               recetteId: props.id,
               content: newComment.value,
-            },
           });
           if (response && response.data && response.data.createComment) {
             recette.value.comments.push(response.data.createComment);
@@ -106,9 +104,7 @@
       const likeRecette = async () => {
         try {
           const response = await likeRecetteMutation({
-            variables: {
               recetteId: props.id,
-            },
           });
           if (response && response.data && response.data.likeRecette) {
             recette.value.likes.push(response.data.likeRecette);
