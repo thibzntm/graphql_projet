@@ -1,25 +1,26 @@
 <template>
   <div class="container mt-5">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="card">
           <div class="card-body">
             <h1 class="text-center mb-4">Inscription</h1>
             <form @submit.prevent="signup">
               <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" v-model="email" class="form-control" id="email" required />
+                <input type="email" v-model="email" class="form-control form-control-lg" id="email" required />
               </div>
               <div class="form-group">
                 <label for="password">Mot de passe:</label>
-                <input type="password" v-model="password" class="form-control" id="password" required />
+                <input type="password" v-model="password" class="form-control form-control-lg" id="password" required />
               </div>
               <div class="form-group">
                 <label for="name">Nom:</label>
-                <input type="text" v-model="name" class="form-control" id="name" required />
+                <input type="text" v-model="name" class="form-control form-control-lg" id="name" required />
               </div>
-              <button type="submit" class="btn btn-primary w-100">
-                <i class="fas fa-user-plus"></i> Inscription
+              <br>
+              <button type="submit" class="btn btn-primary btn-lg w-100">
+                <i class="fas fa-user-plus"></i> S'inscrire
               </button>
             </form>
           </div>
@@ -49,7 +50,6 @@ export default defineComponent({
           name: name.value,
         });
         if (response && response.data) {
-          //console.log('User signed up:', response.data.signup);
           window.location.href = '/login';
         }
       } catch (error) {
@@ -69,16 +69,16 @@ export default defineComponent({
 
 <style scoped>
 .container {
-  max-width: 500px;
+  max-width: 700px;
 }
 
 .card {
   border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card-body {
-  padding: 2rem;
+  padding: 3rem;
 }
 
 .btn-primary {
